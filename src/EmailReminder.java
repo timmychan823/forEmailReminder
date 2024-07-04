@@ -21,6 +21,8 @@ public class EmailReminder {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
+            System.out.println("Hello");
+
             FileWriter writer = new FileWriter("latestRecord.txt",false);
             writer.write("Subject: Test\nTo: tshchan@hkma.gov.hk\nCc: chanshunhei09@gmail.com\n\n");
             writer.write("The following accounts will expire soon:\n");
