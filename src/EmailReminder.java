@@ -22,6 +22,7 @@ public class EmailReminder {
             ResultSet rs = st.executeQuery(sql);
 
             FileWriter writer = new FileWriter("latestRecord.txt",false);
+            writer.write("Subject: Test\nTo: tshchan@hkma.gov.hk\nCc: chanshunhei09@gmail.com\n\n");
             writer.write("The following accounts will expire soon:\n");
 
             writer.write(String.format("%15s%15s%15s","Column1","Column2","Column3")+"\n"); //change to correct column names later
@@ -35,7 +36,7 @@ public class EmailReminder {
             con.close();
             writer.close();
 
-            Process proc = Runtime.getRuntime().exec("cat latestRecord.txt | sendmail \"tshchan@hkma.gov.hk cc:chanshunhei09@gmail.com\" Test");
+            Process proc = Runtime.getRuntime().exec("sendmail -i -t <latestRecord.txt");
 
         } catch (Exception e) {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
