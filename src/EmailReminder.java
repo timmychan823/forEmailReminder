@@ -21,17 +21,20 @@ public class EmailReminder {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
-            System.out.println("Hello");
 
             FileWriter writer = new FileWriter("latestRecord.txt",false);
             writer.write("Subject: Test\nTo: tshchan@hkma.gov.hk\nCc: chanshunhei09@gmail.com\n\n");
+            System.out.println("Meta-data added");
             writer.write("The following accounts will expire soon:\n");
+            System.out.println("expired noti added");
 
             writer.write(String.format("%15s%15s%15s","Column1","Column2","Column3")+"\n"); //change to correct column names later
+            System.out.println("columns added");
             writer.write(String.join("", Collections.nCopies(45, "-"))+"\n"); //change to correct length later
             while (rs.next()) {
 
                 writer.write(String.format("%15s%15s%15s",rs.getString(1), rs.getString(2), rs.getString(3))+"\n"); //change this later to fit selection result
+                System.out.println(String.format("%15s%15s%15s",rs.getString(1), rs.getString(2), rs.getString(3))+"\n");
             }
             // step5 close the connection object
 
