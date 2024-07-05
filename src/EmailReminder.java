@@ -22,24 +22,26 @@ public class EmailReminder {
             ResultSet rs = st.executeQuery(sql);
 
             //int[] columnLengths= EmailReminder.maxColumns(rs);
-            int [] columnLengths = {25,25,25,25};
             rs.beforeFirst();
 
             FileWriter writer = new FileWriter("latestRecord.txt",false);
-            writer.write("Subject: Password Expiry Reminder\nTo: tshchan@hkma.gov.hk\nCc: chanshunhei09@gmail.com\n\n");
+            writer.write("Subject: Password Expiry Reminder\nTo: tshchan@hkma.gov.hk\nCc: chanshunhei09@gmail.com\nContent-Type: text/html; charset=\"UTF-8\"\n\n");
             writer.write("The following accounts' passwords will expire soon:\n");
-            writer.write(String.format("%"+-columnLengths[0]+"s | %"+-columnLengths[1]+"s | %"+-columnLengths[2]+"s","Column1","Column2","Column3")+"\n"); //change to correct column names later
-            writer.write(Collections.nCopies(columnLengths[0]+columnLengths[1]+columnLengths[2]+4,"-").toString()); //+(number of columns-1)*2
+            writer.write(String.format("<table border=\"1\"><tr><th>%s</th><th>%s</th><th>%s</th></tr>","id","Number of days before expiry","Expiry date")+"\n"); //change to correct column names later
             while (rs.next()) {
-                writer.write(String.format("%"+-columnLengths[0]+"s | %"+-columnLengths[1]+"s | %"+-columnLengths[2]+"s",rs.getString(1), rs.getString(2), rs.getString(3))+"\n"); //change this later to fit selection result
+                writer.write(String.format("<tr><td>%s</td><td>%s</td><td>%s</td></tr>",rs.getString(1), rs.getString(2), rs.getString(3))+"\n"); //change this later to fit selection result
             }
+            writer.write("</table>");
             // step5 close the connection object
 
             con.close();
             writer.close();
-
+            //send to one mail group so no need xml file to change config
+            //id number of days before expiry date and real expiry date
+            //send every day but 2 types (with expiry)
+            //use html table to format it
             ProcessBuilder pb = new ProcessBuilder();
-            pb.command("/usr/bin/bash","-c","uuencode latestRecord.txt | sendmail -i -t \"tshchan@hkma.gov.hk,chanshunhei09@gmail.com\"");
+            pb.command("/usr/bin/bash","-c","sendmail -i -t \"tshchan@hkma.gov.hk,chanshunhei09@gmail.com\" < latestRecord.txt");
             Process process = pb.start();
 
         } catch (Exception e) {
