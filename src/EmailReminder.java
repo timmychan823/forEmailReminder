@@ -15,7 +15,9 @@ public class EmailReminder {
             String password = "epss123?"; //change to real password later
             Connection con = DriverManager.getConnection(url, username, password);
 
-            Statement st = con.createStatement();
+            Statement st = con.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = st.executeQuery(sql);
 
             int[] columnLengths= EmailReminder.maxColumns(rs);
