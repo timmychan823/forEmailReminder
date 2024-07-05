@@ -20,7 +20,8 @@ public class EmailReminder {
                     ResultSet.CONCUR_READ_ONLY);
             ResultSet rs = st.executeQuery(sql);
 
-            int[] columnLengths= EmailReminder.maxColumns(rs);
+            //int[] columnLengths= EmailReminder.maxColumns(rs);
+            int [] columnLengths = {25,25,25};
             rs.beforeFirst();
 
             FileWriter writer = new FileWriter("latestRecord.txt",false);
@@ -61,9 +62,9 @@ public class EmailReminder {
         }
 
         while (resultSet.next()) {
-            for (int i = 1; i <= columnNumber; i++) {
+            for (int i = 1; i <= columnNumber; i++) { //Null Pointer Exception
                 if (resultSet.getString(i).length() > max[i-1]) {
-                    max[i-1] = resultSet.getString(i).length();
+                    max[i - 1] = resultSet.getString(i).length();
                 }
             }
         }
