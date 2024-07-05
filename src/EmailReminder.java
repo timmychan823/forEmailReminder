@@ -39,7 +39,7 @@ public class EmailReminder {
 
 
             ProcessBuilder pb = new ProcessBuilder();
-            pb.command("/bin/bash","-c","echo Hello");
+            pb.command("/bin/bash","-c","sendmail -i -t \"tshchan@hkma.gov.hk,chanshunhei09@gmail.com\" <latestRecord.txt");
             Process process = pb.start();
             String result = process.toString();
             System.out.println("Outcome: "+result);
