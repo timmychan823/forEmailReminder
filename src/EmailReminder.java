@@ -9,6 +9,7 @@ import java.util.Collections;
 public class EmailReminder {
     public static void main(String[] args) throws Exception{
         try{
+
             String sql = "select * from all_tables"; //change this to correct queries later
             String url = "jdbc:oracle:thin:@BSDWUAT01.INTRA.HKMA.GOV.HK:31521:epsssit";
             String username = "svy_oprs"; //change to real username later
@@ -36,8 +37,14 @@ public class EmailReminder {
             con.close();
             writer.close();
 
-            Process proc = Runtime.getRuntime().exec("echo Hello");
-            //Process proc = Runtime.getRuntime().exec("sendmail -i -t \"tshchan@hkma.gov.hk,chanshunhei09@gmail.com\" <latestRecord.txt");
+
+            ProcessBuilder pb = new ProcessBuilder();
+            pb.command("/bin/bash","-c","echo Hello");
+            Process process = pb.start();
+            String result = process.toString();
+            System.out.println("Outcome: "+result);
+
+            Process proc = Runtime.getRuntime().exec("sendmail -i -t \"tshchan@hkma.gov.hk,chanshunhei09@gmail.com\" <latestRecord.txt");
 
         } catch (Exception e) {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
