@@ -27,9 +27,9 @@ public class EmailReminder {
             FileWriter writer = new FileWriter("latestRecord.txt",false);
             writer.write("Subject: Test\nTo: tshchan@hkma.gov.hk\nCc: chanshunhei09@gmail.com\n\n");
             writer.write("The following accounts' passwords will expire soon:\n");
-            writer.write(String.format("%"+-columnLengths[1]+"s | %"+-columnLengths[2]+" | %"+-columnLengths[3]+"s","Column1","Column2","Column3")+"\n"); //change to correct column names later
+            writer.write(String.format("%"+-columnLengths[0]+"s | %"+-columnLengths[1]+"s | %"+-columnLengths[2]+"s","Column1","Column2","Column3")+"\n"); //change to correct column names later
             while (rs.next()) {
-                writer.write(String.format("%"+-columnLengths[1]+"s | %"+-columnLengths[2]+" | %"+-columnLengths[3]+"s",rs.getString(1), rs.getString(2), rs.getString(3))+"\n"); //change this later to fit selection result
+                writer.write(String.format("%"+-columnLengths[0]+"s | %"+-columnLengths[1]+"s | %"+-columnLengths[2]+"s",rs.getString(1), rs.getString(2), rs.getString(3))+"\n"); //change this later to fit selection result
             }
             // step5 close the connection object
 
