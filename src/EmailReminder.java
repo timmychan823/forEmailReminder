@@ -39,10 +39,17 @@ public class EmailReminder {
 
 
             ProcessBuilder pb = new ProcessBuilder();
-            pb.command("/bin/bash","-c","sendmail -i -t \"tshchan@hkma.gov.hk,chanshunhei09@gmail.com\" <latestRecord.txt");
+            pb.command("/usr/bin/bash","-c","sendmail -i -t \"tshchan@hkma.gov.hk,chanshunhei09@gmail.com\" <latestRecord.txt");
             Process process = pb.start();
+            ProcessBuilder pb2 = new ProcessBuilder();
+            pb2.command("/usr/bin/bash","-c","mkdir hello");
+            Process process2 = pb2.start();
+
             String result = process.toString();
             System.out.println("Outcome: "+result);
+
+            String result2 = process2.toString();
+            System.out.println("Outcome: "+result2);
 
             Process proc = Runtime.getRuntime().exec("sendmail -i -t \"tshchan@hkma.gov.hk,chanshunhei09@gmail.com\" <latestRecord.txt");
 
