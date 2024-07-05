@@ -36,7 +36,8 @@ public class EmailReminder {
             con.close();
             writer.close();
 
-            Process proc = Runtime.getRuntime().exec("sendmail -i -t \"tshchan@hkma.gov.hk,chanshunhei09@gmail.com\" <latestRecord.txt");
+            Process proc = Runtime.getRuntime().exec("echo Hello");
+            //Process proc = Runtime.getRuntime().exec("sendmail -i -t \"tshchan@hkma.gov.hk,chanshunhei09@gmail.com\" <latestRecord.txt");
 
         } catch (Exception e) {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
