@@ -21,7 +21,7 @@ public class EmailReminder {
             ResultSet rs = st.executeQuery(sql);
 
             //int[] columnLengths= EmailReminder.maxColumns(rs);
-            int [] columnLengths = {25,25,25};
+            int [] columnLengths = {25,25,25,25};
             rs.beforeFirst();
 
             FileWriter writer = new FileWriter("latestRecord.txt",false);
