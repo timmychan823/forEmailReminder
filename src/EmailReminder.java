@@ -26,9 +26,10 @@ public class EmailReminder {
             rs.beforeFirst();
 
             FileWriter writer = new FileWriter("latestRecord.txt",false);
-            writer.write("Subject: Test\nTo: tshchan@hkma.gov.hk\nCc: chanshunhei09@gmail.com\n\n");
+            writer.write("Subject: Password Expiry Reminder\nTo: tshchan@hkma.gov.hk\nCc: chanshunhei09@gmail.com\n\n");
             writer.write("The following accounts' passwords will expire soon:\n");
             writer.write(String.format("%"+-columnLengths[0]+"s | %"+-columnLengths[1]+"s | %"+-columnLengths[2]+"s","Column1","Column2","Column3")+"\n"); //change to correct column names later
+            writer.write(Collections.nCopies(columnLengths[0]+columnLengths[1]+columnLengths[2]+4,"-").toString()); //+(number of columns-1)*2
             while (rs.next()) {
                 writer.write(String.format("%"+-columnLengths[0]+"s | %"+-columnLengths[1]+"s | %"+-columnLengths[2]+"s",rs.getString(1), rs.getString(2), rs.getString(3))+"\n"); //change this later to fit selection result
             }
@@ -37,21 +38,9 @@ public class EmailReminder {
             con.close();
             writer.close();
 
-
             ProcessBuilder pb = new ProcessBuilder();
-            pb.command("/usr/bin/bash","-c","sendmail -i -t \"tshchan@hkma.gov.hk,chanshunhei09@gmail.com\" <latestRecord.txt");
+            pb.command("/usr/bin/bash","-c","uuencode latestRecord.txt | sendmail -i -t \"tshchan@hkma.gov.hk,chanshunhei09@gmail.com\"");
             Process process = pb.start();
-            ProcessBuilder pb2 = new ProcessBuilder();
-            pb2.command("/usr/bin/bash","-c","mkdir hello");
-            Process process2 = pb2.start();
-
-            String result = process.toString();
-            System.out.println("Outcome: "+result);
-
-            String result2 = process2.toString();
-            System.out.println("Outcome: "+result2);
-
-            Process proc = Runtime.getRuntime().exec("sendmail -i -t \"tshchan@hkma.gov.hk,chanshunhei09@gmail.com\" <latestRecord.txt");
 
         } catch (Exception e) {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
