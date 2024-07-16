@@ -1,6 +1,8 @@
 import org.json.JSONObject;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -89,6 +91,7 @@ public class EmailReminder {
 
         } catch (Exception e) {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+            Files.createDirectories(Paths.get("./errorLog/forEmailReminder_error/"));
             OutputStream os = new FileOutputStream("./errorLog/forEmailReminder_error/"+timeStamp+"_ErrorLog.txt");
             StringWriter sw = new StringWriter();
             e.printStackTrace(new PrintWriter(sw));
