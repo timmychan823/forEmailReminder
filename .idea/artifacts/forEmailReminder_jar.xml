@@ -4,6 +4,9 @@
     <root id="archive" name="forEmailReminder.jar">
       <element id="module-output" name="forEmailReminder" />
       <element id="extracted-dir" path="/Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home/lib/ojdbc8.jar" path-in-jar="/" />
+      <element id="library" level="project" name="ojdbc8" />
+      <element id="library" level="project" name="json-20140107" />
+      <element id="extracted-dir" path="/Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home/lib/json-20140107.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
