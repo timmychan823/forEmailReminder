@@ -1,0 +1,7 @@
+{
+ "username": "svy_oprs",
+ "password": "epss123?",
+ "url": "jdbc:oracle:thin:@BSDWUAT01.INTRA.HKMA.GOV.HK:31521:epsssit",
+ "query": "select * from all_tables",
+ "toAddress": "tshchan@hkma.gov.hk,chanshunhei09@gmail.com"
+}
