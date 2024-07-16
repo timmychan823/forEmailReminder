@@ -1,4 +1,0 @@
-org.json.JSONException: JSONObject["account"] not found.
-	at org.json.JSONObject.get(JSONObject.java:473)
-	at org.json.JSONObject.getString(JSONObject.java:654)
-	at ConfigurationEncryptionMachine.main(ConfigurationEncryptionMachine.java:35)
