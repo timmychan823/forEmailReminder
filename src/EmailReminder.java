@@ -92,7 +92,12 @@ public class EmailReminder {
         } catch (Exception e) {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
             Files.createDirectories(Paths.get("./errorLog/forEmailReminder_error/"));
-            OutputStream os = new FileOutputStream("./errorLog/forEmailReminder_error/"+timeStamp+"_ErrorLog.txt");
+            File file = new File("./errorLog/forEmailReminder_error/"+timeStamp+"_ErrorLog.txt");
+            if (!file.exists()){
+                file.createNewFile();
+            }
+            OutputStream os = new FileOutputStream(file);
+
             StringWriter sw = new StringWriter();
             e.printStackTrace(new PrintWriter(sw));
             String exceptionAsString = sw.toString();
