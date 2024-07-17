@@ -36,7 +36,7 @@ public class EmailReminder {
             String url =prop.getProperty("db.url");;
             String username =prop.getProperty("db.username");;
             String password = AES256.decrypt(prop.getProperty("db.password"),secretKey,salt);
-            String toAddress = prop.getProperty("bashLocation");;
+            String toAddress = prop.getProperty("toEmailAddress");;
             int no_of_rows = 0;
 
 
