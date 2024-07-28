@@ -20,7 +20,7 @@ import java.util.Properties;
 public class EmailReminder {
     private static final String EMAIL_SUBJECT = "Subject: [DBA][SYSADM] Password Expiry Reminder ";
     private static final String CONTENT_TYPE="\nContent-Type: text/html; charset=\"UTF-8\"\n\n";
-    private static final String EMAIL_BODY_WITHOUT_DATA= "The following accounts' passwords will expire soon:\n"+String.format("<table border=\"1\"><tr><th>%s</th><th>%s</th><th>%s</th></tr>","USER_ID","Number of days before expiry","Expiry date")+"\n";
+    private static final String EMAIL_BODY_WITHOUT_DATA= "The following accounts' passwords will expire soon:\n"+String.format("<table border=\"1\"><tr><th bgcolor=\"lightblue\"><b>%s</b></th><th bgcolor=\"lightblue\"><b>%s</b></th><th bgcolor=\"lightblue\"><b>%s</b></th></tr>","USER_ID","Number of days before expiry","Expiry date")+"\n";
 
     public static void main(String[] args) throws IOException{
         try{
